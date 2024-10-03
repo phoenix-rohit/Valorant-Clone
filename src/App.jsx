@@ -6,22 +6,10 @@ const Home = lazy(() => import("./ui/Home"));
 const AppLayout = lazy(() => import("./ui/AppLayout"));
 const DownloadGame = lazy(() => import("./ui/DownloadGame"));
 const ErrorPage = lazy(() => import("./ui/ErrorPage"));
-
-// import Home from "./ui/Home";
-// import AppLayout from "./ui/AppLayout";
-// import DownloadGame from "./ui/DownloadGame";
-// import ErrorPage from "./ui/ErrorPage";
-// import Agents from "./features/Agents/Agents";
-// import SingleAgentPage from "./features/agents/SingleAgentPage";
-// import Maps from "./features/Maps/Maps";
-// import Weapons from "./features/weapons/Weapons";
-// import Signin from "./features/auth/Signin";
-// import CreateRiotAccount from "./features/auth/CreateRiotAccount";
-
-const Agents = lazy(() => import("./features/Agents/Agents"));
-const SingleAgentPage = lazy(() => import("./features/Agents/SingleAgentPage"));
-const Maps = lazy(() => import("./features/Maps/Maps"));
-const Weapons = lazy(() => import("./features/Weapons/Weapons"));
+const Agents = lazy(() => import("./features/agents/Agents"));
+const SingleAgentPage = lazy(() => import("./features/agents/SingleAgentPage"));
+const Maps = lazy(() => import("./features/maps/Maps"));
+const Weapons = lazy(() => import("./features/weapons/Weapons"));
 const Signin = lazy(() => import("./features/auth/Signin"));
 const CreateRiotAccount = lazy(() =>
   import("./features/auth/CreateRiotAccount")
