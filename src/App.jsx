@@ -1,16 +1,33 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./ui/Home";
-import AppLayout from "./ui/AppLayout";
-import Agents from "./features/Agents/Agents";
-import Maps from "./features/Maps/Maps";
-import Weapons from "./features/weapons/Weapons";
-import LeaderBoards from "./features/leaderboards/LeaderBoards";
-import ErrorPage from "./ui/ErrorPage";
-import Signin from "./features/auth/Signin";
-import CreateRiotAccount from "./features/auth/CreateRiotAccount";
-import DownloadGame from "./ui/DownloadGame";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import SingleAgentPage from "./features/agents/SingleAgentPage";
+
+const Home = lazy(() => import("./ui/Home"));
+const AppLayout = lazy(() => import("./ui/AppLayout"));
+const DownloadGame = lazy(() => import("./ui/DownloadGame"));
+const ErrorPage = lazy(() => import("./ui/ErrorPage"));
+
+// import Home from "./ui/Home";
+// import AppLayout from "./ui/AppLayout";
+// import DownloadGame from "./ui/DownloadGame";
+// import ErrorPage from "./ui/ErrorPage";
+// import Agents from "./features/Agents/Agents";
+// import SingleAgentPage from "./features/agents/SingleAgentPage";
+// import Maps from "./features/Maps/Maps";
+// import Weapons from "./features/weapons/Weapons";
+// import Signin from "./features/auth/Signin";
+// import CreateRiotAccount from "./features/auth/CreateRiotAccount";
+
+const Agents = lazy(() => import("./features/Agents/Agents"));
+const SingleAgentPage = lazy(() => import("./features/Agents/SingleAgentPage"));
+const Maps = lazy(() => import("./features/Maps/Maps"));
+const Weapons = lazy(() => import("./features/Weapons/Weapons"));
+const Signin = lazy(() => import("./features/auth/Signin"));
+const CreateRiotAccount = lazy(() =>
+  import("./features/auth/CreateRiotAccount")
+);
+
+import Loader from "./ui/Loader";
 
 const queryClient = new QueryClient();
 
@@ -45,12 +62,6 @@ const appRouter = createBrowserRouter([
         element: <Weapons />,
       },
       {
-        // leaderboards
-        path: "/leaderboards",
-        element: <LeaderBoards />,
-      },
-
-      {
         // download page
         path: "/download",
         element: <DownloadGame />,
@@ -72,7 +83,9 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={appRouter} />
+      <Suspense fallback={<Loader />}>
+        <RouterProvider router={appRouter} />
+      </Suspense>
     </QueryClientProvider>
   );
 }

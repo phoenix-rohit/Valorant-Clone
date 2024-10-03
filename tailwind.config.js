@@ -14,9 +14,9 @@ export default {
 
     fontFamily: {
       oswald: ["Oswald", "ui-sans-serif", "system-ui"],
-      montserrat: ["Montserrat", "ui-sans-serif"],
-      sans: ["Poppins", "ui-sans-serif"],
-      sora: ["Sora", "ui-sans-serif"],
+      montserrat: ["Montserrat", "ui-sans-serif", "system-ui"],
+      sans: ["Poppins", "ui-sans-serif", "system-ui"],
+      sora: ["Sora", "ui-sans-serif", "system-ui"],
     },
     extend: {
       colors: {
