@@ -1,48 +1,108 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import RiotGamesSvg from "../../ui/RiotGamesSvg";
 import { useNavigate } from "react-router-dom";
 
 function Signin() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit, formState } = useForm();
+  const { errors } = formState;
 
-  function handleSumbit(e) {
-    e.preventDefault();
-    setUsername("");
-    setPassword("");
+  function onSubmit() {
+    navigate("/", { replace: true });
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-center bg-cover bg-login-1-dark gap-y-10 lg:bg-login-1">
-      <div className="mt-16">
+    <div className="flex flex-col items-center justify-center h-screen bg-center bg-cover bg-login-1-dark gap-y-6 lg:bg-login-1">
+      <div className="mt-5">
         <RiotGamesSvg fill={"fill-white"} hoverFill={"hover:fill-ui-red"} />
       </div>
-      <div className="h-[40rem] msm:w-[30rem] w-[25rem] mx-auto ">
-        <div className="p-10 font-medium text-black bg-white rounded-sm font-montserrat">
+      <div className="h-[40rem] msm:w-[30rem] w-[21rem] mx-auto ">
+        <div className="px-8 py-10 font-medium text-black bg-white rounded-sm font-montserrat">
           <div className="my-4 text-2xl font-bold text-center">Sign In</div>
-          <form onSubmit={(e) => handleSumbit(e)} className="my-10 space-y-6">
-            <div className="flex flex-col gap-y-2">
+          <form onSubmit={handleSubmit(onSubmit)} className="my-10 space-y-6">
+            <div className="relative flex flex-col gap-y-2">
               <input
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="relative p-4 rounded outline-none text-md placeholder:text-neutral-500 placeholder:uppercase placeholder:text-xs placeholder:font-semibold focus:bg-slate-100 bg-slate-100 hover:bg-slate-200"
+                id="username"
+                className={`relative p-4 rounded outline-none text-md placeholder:text-neutral-500 placeholder:uppercase placeholder:text-xs placeholder:font-semibold focus:bg-slate-100 bg-slate-100 hover:bg-slate-200 ${
+                  errors?.username?.message && "border-b-2 border-ui-red"
+                }`}
                 type="text"
                 placeholder="Username"
+                {...register("username", {
+                  required: "Enter your username.",
+                  validate: (val) => {
+                    return (
+                      val.length >= 5 ||
+                      "Username should have at least 5 or more characters"
+                    );
+                  },
+                })}
               />
+              {errors?.username?.message && (
+                <>
+                  <span className="absolute py-1 text-xs top-full left-2 text-ui-red">
+                    {errors.username.message}
+                  </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="absolute -translate-y-1/2 right-3 size-6 top-1/2 stroke-ui-red"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+                    />
+                  </svg>
+                </>
+              )}
             </div>
-            <div className="flex flex-col gap-y-2">
+            <div className="relative flex flex-col gap-y-2">
               <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="p-4 rounded outline-none text-md placeholder:text-neutral-500 placeholder:uppercase placeholder:text-xs placeholder:font-semibold focus:bg-slate-100 bg-slate-100 hover:bg-slate-200"
+                id="password"
+                className={`p-4 rounded outline-none text-md placeholder:text-neutral-500 placeholder:uppercase placeholder:text-xs placeholder:font-semibold focus:bg-slate-100 bg-slate-100 hover:bg-slate-200 ${
+                  errors?.password?.message && "border-b-2 border-ui-red"
+                }`}
                 type="text"
                 placeholder="password"
+                {...register("password", {
+                  required: "Please provide your password.",
+                  validate: (val) => {
+                    return (
+                      val.length >= 8 ||
+                      "Password should have at least 8 or more characters"
+                    );
+                  },
+                })}
               />
+              {errors?.password?.message && (
+                <>
+                  <span className="absolute py-1 text-xs top-full left-2 text-ui-red">
+                    {errors.password.message}
+                  </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="absolute -translate-y-1/2 right-3 size-6 top-1/2 stroke-ui-red"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+                    />
+                  </svg>
+                </>
+              )}
             </div>
             {/* icons */}
             <div className="flex items-center justify-center gap-2">
-              <button className="flex justify-center w-full px-8 py-2 duration-200 border-2 hover:scale-105 rounded-xl border-slate-200">
+              <button className="flex justify-center w-full px-6 py-2 duration-200 border-2 hover:scale-105 rounded-xl border-slate-200">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 326667 333333"
@@ -72,7 +132,7 @@ function Signin() {
                 </svg>
               </button>
 
-              <button className="flex justify-center w-full px-8 py-2 duration-200 bg-black border-2 hover:scale-105 rounded-xl">
+              <button className="flex justify-center w-full px-6 py-2 duration-200 bg-black border-2 hover:scale-105 rounded-xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="64"
@@ -88,7 +148,7 @@ function Signin() {
                   <path d="M494.782 340.02c-.803-81.025 66.084-119.907 69.072-121.832-37.595-54.993-96.167-62.552-117.037-63.402-49.843-5.032-97.242 29.362-122.565 29.362-25.253 0-64.277-28.607-105.604-27.85-54.32.803-104.4 31.594-132.403 80.245C29.81 334.457 71.81 479.58 126.816 558.976c26.87 38.882 58.914 82.56 100.997 81 40.512-1.594 55.843-26.244 104.848-26.244 48.993 0 62.753 26.245 105.64 25.406 43.606-.803 71.232-39.638 97.925-78.65 30.887-45.12 43.548-88.75 44.316-90.994-.969-.437-85.029-32.634-85.879-129.439l.118-.035zM414.23 102.178C436.553 75.095 451.636 37.5 447.514-.024c-32.162 1.311-71.163 21.437-94.253 48.485-20.729 24.012-38.836 62.28-33.993 99.036 35.918 2.8 72.591-18.248 94.926-45.272l.036-.047z" />
                 </svg>
               </button>
-              <button className="flex justify-center w-full px-8 py-2 hover:scale-105 duration-200 border-2 rounded-xl bg-[#107b10]">
+              <button className="flex justify-center w-full px-6 py-2 hover:scale-105 duration-200 border-2 rounded-xl bg-[#107b10]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 1331.67 1333.33"
@@ -110,10 +170,7 @@ function Signin() {
 
             {/* submit */}
             <div className="flex items-center pt-5">
-              <button
-                disabled={!username || !password}
-                className="flex items-center justify-center w-24 h-24 p-4 mx-auto disabled:bg-slate-200 disabled:cursor-not-allowed rounded-3xl bg-ui-red"
-              >
+              <button className="flex items-center justify-center w-20 h-20 p-4 mx-auto disabled:bg-slate-200 disabled:cursor-not-allowed rounded-3xl bg-ui-red">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

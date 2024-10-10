@@ -13,13 +13,22 @@ function Home() {
         <div className="relative md:h-screen h-[90dvh]">
           <div className="absolute top-0 left-0 object-cover w-full h-full">
             <video
-              className="object-cover w-full h-full "
+              className="hidden object-cover w-full h-full sm:block "
               autoPlay
               loop
               muted
-              poster="/dark-valo-bg.jpg"
+              poster="/new-valo-bg.jpg"
             >
               <source src="/valorant-hero-1.mp4" />
+            </video>
+            <video
+              className="object-cover w-full h-full sm:hidden "
+              autoPlay
+              loop
+              muted
+              poster="/new-valo-bg.jpg"
+            >
+              <source src="/yoru-hero.mp4" />
             </video>
           </div>
           <div className="absolute text-center -translate-x-1/2 -translate-y-1/2 w-[30rem] top-[45%] left-[52%] md:left-[51%]">
