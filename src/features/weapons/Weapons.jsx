@@ -75,7 +75,7 @@ function Weapons() {
                   key={weapon.uuid}
                   className="font-sans transition-all border-2 border-ui-red group"
                 >
-                  <div className="flex flex-col items-center justify-around max-w-full duration-300 bg-contain h-52 group-hover:bg-dark-valo-bg bg-white-valo-bg ">
+                  <div className="flex flex-col items-center justify-around max-w-full duration-300 bg-center bg-no-repeat bg-cover h-52 group-hover:bg-dark-valo-bg bg-white-valo-bg">
                     <div
                       className={` ${
                         trimString(weapon.category) === "Sidearm" ||

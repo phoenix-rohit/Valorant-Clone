@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 
 function DownloadGame() {
   return (
-    <div className="relative h-screen overflow-hidden bg-center bg-no-repeat md:bg-cover bg-valo-download">
+    <div className="relative h-screen overflow-hidden bg-center bg-no-repeat md:bg-cover bg-valo-download-1">
       <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
         <div className="flex flex-col items-center gap-5">
           <div className="mb-3">
             <div className="flex flex-col items-center mb-2 ">
-              <ValorantSvg fill={"#ff4654"} />
+              <ValorantSvg fill={"#fff"} />
             </div>
             <h3 className="text-4xl text-[#fff] font-bold tracking-tighter text-center uppercase lg:text-6xl font-oswald">
               Choose Your Platform

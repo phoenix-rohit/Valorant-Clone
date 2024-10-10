@@ -14,6 +14,7 @@ Check out live demo : [Valorant Clone Live Demo](https://valorant-clone-with-rea
 - React Query
 - Tailwind CSS
 - Framer Motion
+- React Hook Form
 
 ## Disclaimer
 

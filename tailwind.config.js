@@ -27,6 +27,7 @@ export default {
       backgroundImage: {
         "dark-valo-bg": "url('/dark-valo-bg.jpg')",
         "valo-download": "url('/download-bg.jpg')",
+        "valo-download-1": "url('/download-bg-1-darken.jpg')",
         loading: "url('/loading-screen.jpg')",
         valo: "url('/background-valorant.png')",
         "valo-white": "url('/valorant-white.png')",
